@@ -5,7 +5,15 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
                 return
             }
 
-            $(tgt_node.parentNode).find(".output").text('Your result:' + list_to_tuple(data.out))
+            /*
+             * edit output value
+             */
+            try {
+                $(tgt_node.parentNode).find(".output").text('Your result:' + list_to_tuple(data.out))
+            } catch (e) {
+                $(tgt_node.parentNode).find(".output").text('Your result:' + JSON.stringify(data.out))
+                return
+            }
 
             /**
              * list_to_tuple (function) 
@@ -39,6 +47,13 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
                     'fill': '#82D1F5',
                     'opacity': '0.5',
                 },
+            }
+
+            /**
+             * guard
+             */
+            if (!data.ext.result) {
+                return
             }
 
             /**
