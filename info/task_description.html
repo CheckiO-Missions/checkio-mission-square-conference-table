@@ -1,0 +1,70 @@
+<!-- Describe task in general -->
+
+<p>
+    You must combine several long desks to make a square conference table of the specified size.
+</p>
+<ul>
+    <li>The input values are the widths of the long desks (tuples of integer) and the side length of the table (integer).
+        The long desks have any width and their depth is always 1.</li>
+    <li>The answer is the combinations of long desks that make the four sides of the table.
+        It must be a list of 4 tuples, each tuple being one or more integers.</li>
+</ul>
+<p>
+    <strong>NOTE:</strong>
+    <ul>
+        <li>Since there can be more than one correct answer, using a checker.
+        <li>All tests have correct answers.</li>
+        <li>You don't always have to use up all the long desks.</li>
+    </ul>
+</p>
+</p>
+
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> The long desks (a tuple of integers) and the side length of the table (a integer).
+</p>
+
+<p>
+    <strong>Output:</strong> The combinations of the long desks (a list of 4 tuples of integers).
+</p>
+
+<table style="margin: auto;">
+<!-- <tr><td>square_conference_table((1, 2, 2, 3, 4, 4), 4): </td></tr> -->
+<tr style="text-align: left;">
+<td colspan="2" style="padding-top: 25px; padding-bottom: 20px;">square_conference_table((1, 2, 2, 3, 4, 4), 4) : </td>
+</tr>
+<tr style="text-align: center;">
+<td>ex_1:</td>
+<td>ex_2:</td>
+</tr>
+<tr>
+<td>
+    <img  title="example_01" src="{{MEDIA}}square_conference_table_ex01.png" alt="example_01" style="max-height: 200px"/>
+    </td>
+<td>
+    <img  title="example_02" src="{{MEDIA}}square_conference_table_ex02.png" alt="example_02" style="max-height: 200px"/>
+    </td>
+</tr>
+<tr style="text-align: center;">
+<td>[(4,), (3,), (2,), (2, 1)]</td>
+<td>[(4,), (2,), (2,), (4,)]</td>
+</tr>
+</table>
+
+<p>
+    <strong>Examples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">
+from itertools import chain
+from collections import Counter
+def checker(fn, ds, s):
+    result = fn(ds, s)
+    if not Counter(chain(*result)) - Counter(ts):
+        difs = [s - sum(r) for r in result]
+        return sum(difs) == 4 and all(0 <= d <= 2 for d in difs)
+
+{{init_code_tmpl}}</pre>
+
+

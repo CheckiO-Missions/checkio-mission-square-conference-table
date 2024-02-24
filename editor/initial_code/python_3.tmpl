@@ -1,0 +1,31 @@
+{% comment %}New initial code template{% endcomment %}
+{% block env %}{% endblock env %}
+
+{% block start %}
+def square_conference_table(tables, side_length) -> int:
+    # your code here
+    return 0
+{% endblock start %}
+
+{% block example %}
+print('Example:')
+print(square_conference_table([2, 2, 3, 4, 5], 5))
+{% endblock %}
+
+# These "asserts" are used for self-checking
+from itertools import chain
+from collections import Counter
+def checker(fn, ds, s):
+    result = fn(ds, s)
+    if not Counter(chain(*result)) - Counter(ds):
+        difs = [s - sum(r) for r in result]
+        return sum(difs) == 4 and all(0 <= d <= 2 for d in difs)
+{% block tests %}
+{% for t in tests %}
+assert {% block call %}checker(square_conference_table, {{t.input|p_args}})
+{% endblock %} is {% block result %}True{% endblock %}{% endfor %}
+{% endblock %}
+
+{% block final %}
+print("The mission is done! Click 'Check Solution' to earn rewards!")
+{% endblock final %}
