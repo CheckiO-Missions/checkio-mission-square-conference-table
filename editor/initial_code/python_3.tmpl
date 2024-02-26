@@ -2,7 +2,11 @@
 {% block env %}{% endblock env %}
 
 {% block start %}
-def square_conference_table(tables, side_length) -> int:
+Desks = tuple[int, ...]
+SquareTable = list[Desks, Desks, Desks, Desks]
+
+
+def square_conference_table(desks: Desks, side_length: int) -> SquareTable:
     # your code here
     return []
 {% endblock start %}
