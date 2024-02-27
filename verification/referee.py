@@ -14,7 +14,7 @@ def check(input, result):
         desks, side_length = input
         if not Counter(chain(*result)) - Counter(desks):
             difs = [side_length - sum(r) for r in result]
-            if sum(difs) == 4 and all(0 <= d <= 2 for d in difs):
+            if difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
                 return True, (result, 'success')
         return False, (result, 'fail')
     except Exception:

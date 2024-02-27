@@ -7,7 +7,9 @@
     <li>The input values are the widths of the long desks (tuples of integer) and the side length of the table (integer).
         The long desks have any width and their depth is always 1.</li>
     <li>The answer is the combinations of long desks that make the four sides of the table.
-        It must be a list of 4 tuples, each tuple being one or more integers.</li>
+        It must be a list of 4 tuples, each tuple being one or more integers.
+        The adjacent tuples in the resulting list to actually represent adjacent sides of the table.</li>
+
 </ul>
 <p>
     <strong>NOTE:</strong>
@@ -47,8 +49,8 @@
     </td>
 </tr>
 <tr style="text-align: center;">
-<td>[(4,), (3,), (2,), (2, 1)]</td>
-<td>[(4,), (2,), (2,), (4,)]</td>
+<td>[(4,), (3,), (2,1), (2,)]</td>
+<td>[(4,), (2,), (4,), (2,)]</td>
 </tr>
 </table>
 
@@ -71,7 +73,8 @@ def checker(fn, ds, s):
     result = fn(ds, s)
     if not Counter(chain(*result)) - Counter(ds):
         difs = [s - sum(r) for r in result]
-        return sum(difs) == 4 and all(0 <= d <= 2 for d in difs)
+        return difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+
 
 {{init_code_tmpl}}</pre>
 
