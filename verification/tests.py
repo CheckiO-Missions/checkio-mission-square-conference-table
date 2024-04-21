@@ -16,8 +16,8 @@ def make_random_tests(*side_lengths):
         for ct in connect_type:
             rest = side_length - ct
             while True:
-                cut = randint(1, 60)
-                if rest - cut > 0 and len(desks) < 20:
+                cut = randint(1, 20)
+                if rest - cut > 0:
                     rest -= cut
                     desks.append(cut)
                 else:
