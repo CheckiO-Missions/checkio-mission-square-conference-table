@@ -1,0 +1,81 @@
+<!-- Describe task in general -->
+
+<p>
+    Ви повинні об'єднати кілька довгих столів, щоб зробити квадратний конференц-стіл заданого розміру.
+</p>
+<ul>
+    <li>Вхідними даними є ширина довгих столів (кортежі цілих чисел) та довжина сторони столу (ціле число).
+        Довгі столи мають довільну ширину, а їх глибина завжди дорівнює 1.</li>
+    <li>Відповідь - це комбінації довгих столів, які утворюють чотири сторони столу.
+        Це повинен бути список з 4 кортежів, кожен з яких містить одне або декілька цілих чисел.
+        Сусідні кортежі в отриманому списку повинні представляти сусідні сторони столу.</li>
+
+</ul>
+<p>
+    <strong>ЗАУВАЖЕННЯ:</strong>
+    <ul>
+       <li>Оскільки правильних відповідей може бути декілька, використовуйте перевірку.
+       <li>Всі тести мають правильні відповіді.</li>
+       <li>Вам не завжди потрібно використовувати всі довгі столи.</li>
+    </ul>
+</p>
+</p>
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Вхідні дані:</strong> Кількість довгих парт (кортеж цілих чисел) та довжина сторони столу (ціле число).
+</p>
+
+<p>
+   <strong>Вихідні дані:</strong> Комбінації довгих парт (список з 4 цілих чисел).
+</p>
+
+<table style="margin: auto;">
+<!-- <tr><td>square_conference_table((1, 2, 2, 3, 4, 4), 4): </td></tr> -->
+<tr style="text-align: left;">
+<td colspan="2" style="padding-top: 25px; padding-bottom: 20px;">square_conference_table((1, 2, 2, 3, 4, 4), 4): </td>
+</tr>
+<tr style="text-align: center;">
+<td>ex_1:</td>
+<td>ex_2:</td>
+</tr>
+<tr>
+<td>
+    <img  title="example_01" src="{{MEDIA}}square_conference_table_ex01.png" alt="example_01" style="max-height: 200px"/>
+    </td>
+<td>
+    <img  title="example_02" src="{{MEDIA}}square_conference_table_ex02.png" alt="example_02" style="max-height: 200px"/>
+    </td>
+</tr>
+<tr style="text-align: center;">
+<td>[(4,), (3,), (2,1), (2,)]</td>
+<td>[(4,), (2,), (4,), (2,)]</td>
+</tr>
+</table>
+
+<p>
+    <strong>Передумова:</strong>
+</p>
+<ul>
+    <li>len(long_desks) &lt;= 20</li>
+    <li>side_length &lt;= 60</li>
+</ul>
+
+<p>
+    <strong>Приклади:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">
+from itertools import chain
+from collections import Counter
+def checker(fn, ds, s):
+    result = fn(ds, s)
+    if not Counter(chain(*result)) - Counter(ds):
+        difs = [s - sum(r) for r in result]
+        return difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+
+
+{{init_code_tmpl}}</pre>
+
+
