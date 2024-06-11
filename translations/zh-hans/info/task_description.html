@@ -1,0 +1,81 @@
+<!-- Describe task in general -->
+
+<p>
+    您必须将几张长桌组合起来，才能制作出指定尺寸的方形会议桌。
+</p>
+<ul>
+    <li>输入值是长桌的宽度（整数元组）和桌子的边长（整数）。
+        长桌的宽度不限，深度始终为 1。</li>
+    <li>答案是组成桌子四边的长桌组合。
+        它必须是一个包含 4 个图元的列表，每个图元是一个或多个整数。
+        结果列表中的相邻元组实际上代表桌子的相邻边。</li>
+
+</ul>
+<p>
+    <strong>注意</strong>
+    <ul>
+       <li>由于正确答案可能不止一个，因此使用校验器时。
+       <li>所有测试都有正确答案。</li>
+       <li>不一定非要用完所有的长课桌。</li>
+    </ul>
+</p>
+</p>
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>输入</strong>长课桌（整数元组）和桌子边长（整数）。
+</p>
+
+<p>
+   <strong>输出：</strong>长桌的组合（由 4 个整数元组组成的列表）。
+</p>
+
+<table style="margin: auto;">
+<!-- <tr><td>square_conference_table((1, 2, 2, 3, 4, 4), 4): </td></tr> -->
+<tr style="text-align: left;">
+<td colspan="2" style="padding-top: 25px; padding-bottom: 20px;">square_conference_table((1, 2, 2, 3, 4, 4), 4) ： </td>
+</tr>
+<tr style="text-align: center;">
+<td>ex_1：</td>
+<td>ex_2：</td>
+</tr>
+<tr>
+<td>
+    <img  title="example_01" src="{{MEDIA}}square_conference_table_ex01.png" alt="example_01" style="max-height: 200px"/>
+    </td>
+<td>
+    <img  title="example_02" src="{{MEDIA}}square_conference_table_ex02.png" alt="example_02" style="max-height: 200px"/>
+    </td>
+</tr>
+<tr style="text-align: center;">
+<td>[(4,), (3,), (2,1), (2,)]</td>
+<td>[(4,), (2,), (4,), (2,)]</td>
+</tr>
+</table>
+
+<p>
+    <strong>先决条件：</strong>
+</p>
+<ul>
+    <li>len(long_desks) &lt;= 20</li>
+    <li>边长 &lt;= 60</li>
+</ul>
+
+<p>
+    <strong>示例</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">
+from itertools import chain
+from collections import Counter
+def checker(fn, ds, s):
+    result = fn(ds, s)
+    if not Counter(chain(*result)) - Counter(ds):
+        difs = [s - sum(r) for r in result]
+        return difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+
+
+{{init_code_tmpl}}</pre>
+
+
