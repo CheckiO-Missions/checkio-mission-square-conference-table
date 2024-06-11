@@ -1,0 +1,81 @@
+<!-- Describe task in general -->
+
+<p>
+    Vous devez combiner plusieurs bureaux longs pour obtenir une table de conférence carrée de la taille spécifiée.
+</p>
+<ul>
+    <li>Les valeurs d'entrée sont les largeurs des bureaux longs (tuples d'entiers) et la longueur du côté de la table (entier).
+        Les bureaux longs peuvent avoir n'importe quelle largeur et leur profondeur est toujours de 1.</li>
+    <li>La réponse est la combinaison des pupitres longs qui forment les quatre côtés de la table.
+        Il doit s'agir d'une liste de 4 tuples, chaque tuple étant un ou plusieurs entiers.
+        Les tuples adjacents de la liste résultante représentent en fait les côtés adjacents de la table.</li>
+
+</ul>
+<p>
+    <strong>REMARQUE:</strong>
+    <ul>
+       <li>Étant donné qu'il peut y avoir plus d'une réponse correcte, vous pouvez utiliser un vérificateur.
+       <li>Tous les tests ont des réponses correctes.</li>
+       <li>Il n'est pas toujours nécessaire d'utiliser tous les pupitres longs.</li>
+    </ul>
+</p>
+</p>
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Les pupitres longs (un tuple d'entiers) et la longueur du côté de la table (un entier).
+</p>
+
+<p>
+   <strong>Sortie:</strong> Les combinaisons des pupitres longs (une liste de 4 tuples d'entiers).
+</p>
+
+<table style="margin: auto;">
+<!-- <tr><td>square_conference_table((1, 2, 2, 3, 4, 4), 4): </td></tr> -->
+<tr style="text-align: left;">
+<td colspan="2" style="padding-top: 25px; padding-bottom: 20px;">square_conference_table((1, 2, 2, 3, 4, 4), 4): </td>
+</tr>
+<tr style="text-align: center;">
+<td>ex_1:</td>
+<td>ex_2:</td>
+</tr>
+<tr>
+<td>
+    <img  title="example_01" src="{{MEDIA}}square_conference_table_ex01.png" alt="example_01" style="max-height: 200px"/>
+    </td>
+<td>
+    <img  title="example_02" src="{{MEDIA}}square_conference_table_ex02.png" alt="example_02" style="max-height: 200px"/>
+    </td>
+</tr>
+<tr style="text-align: center;">
+<td>[(4,), (3,), (2,1), (2,)]</td>
+<td>[(4,), (2,), (4,), (2,)]</td>
+</tr>
+</table>
+
+<p>
+    <strong>Condition préalable:</strong>
+</p>
+<ul>
+    <li>len(long_desks) &lt;= 20</li>
+    <li>longueur_côté &lt;= 60</li>
+</ul>
+
+<p>
+    <strong>Exemples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">
+from itertools import chain
+from collections import Counter
+def checker(fn, ds, s):
+    result = fn(ds, s)
+    if not Counter(chain(*result)) - Counter(ds):
+        difs = [s - sum(r) for r in result]
+        return difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+
+
+{{init_code_tmpl}}</pre>
+
+
