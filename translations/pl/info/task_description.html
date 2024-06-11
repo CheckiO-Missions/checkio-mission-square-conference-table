@@ -1,0 +1,81 @@
+<!-- Describe task in general -->
+
+<p>
+    Muszą Państwo połączyć kilka długich biurek, aby stworzyć kwadratowy stół konferencyjny o określonym rozmiarze.
+</p>
+<ul>
+    <li>Wartościami wejściowymi są szerokości długich biurek (krotki liczb całkowitych) i długość boku stołu (liczba całkowita).
+        Długie biurka mogą mieć dowolną szerokość, a ich głębokość zawsze wynosi 1.</li>
+    <li>Odpowiedzią są kombinacje długich ławek, które tworzą cztery boki stołu.
+        Musi to być lista 4 krotek, z których każda jest co najmniej jedną liczbą całkowitą.
+        Sąsiednie krotki na wynikowej liście muszą faktycznie reprezentować sąsiednie boki stołu.</li>
+
+</ul>
+<p>
+    <strong>PROSZĘ ZAUWAŻYĆ:</strong>
+    <ul>
+       <li>Ponieważ może istnieć więcej niż jedna poprawna odpowiedź, proszę użyć sprawdzarki.
+       <li>Wszystkie testy mają poprawne odpowiedzi.</li>
+       <li>Nie zawsze trzeba wykorzystywać wszystkie długie biurka.</li>
+    </ul>
+</p>
+</p>
+
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Dane wejściowe:</strong> Długie biurka (krotka liczb całkowitych) i długość boku stołu (liczba całkowita).
+</p>
+
+<p>
+   <strong>Dane wyjściowe:</strong> Kombinacje długich biurek (lista 4 krotek liczb całkowitych).
+</p>
+
+<table style="margin: auto;">
+<!-- <tr><td>square_conference_table((1, 2, 2, 3, 4, 4), 4): </td></tr> -->
+<tr style="text-align: left;">
+<td colspan="2" style="padding-top: 25px; padding-bottom: 20px;">square_conference_table((1, 2, 2, 3, 4, 4), 4): </td>
+</tr>
+<tr style="text-align: center;">
+<td>ex_1:</td>
+<td>ex_2:</td>
+</tr>
+<tr>
+<td>
+    <img  title="example_01" src="{{MEDIA}}square_conference_table_ex01.png" alt="example_01" style="max-height: 200px"/>
+    </td>
+<td>
+    <img  title="example_02" src="{{MEDIA}}square_conference_table_ex02.png" alt="example_02" style="max-height: 200px"/>
+    </td>
+</tr>
+<tr style="text-align: center;">
+<td>[(4,), (3,), (2,1), (2,)]</td>
+<td>[(4,), (2,), (4,), (2,)]</td>
+</tr>
+</table>
+
+<p>
+    <strong>Warunek wstępny:</strong>
+</p>
+<ul>
+    <li>len(long_desks) &lt;= 20</li>
+    <li>side_length &lt;= 60</li>
+</ul>
+
+<p>
+    <strong>Przykłady:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">
+from itertools import chain
+from collections import Counter
+def checker(fn, ds, s):
+    result = fn(ds, s)
+    if not Counter(chain(*result)) - Counter(ds):
+        difs = [s - sum(r) for r in result]
+        return difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+
+
+{{init_code_tmpl}}</pre>
+
+
