@@ -4,21 +4,23 @@ from checkio.referees.io_template import CheckiOReferee
 # from checkio.referees.checkers import to_list
 
 from tests import TESTS
-
 from itertools import chain
 from collections import Counter
+Desks = tuple[int, ...]
+Result = list[Desks, Desks, Desks, Desks]
 
 
-def check(input, result):
+def check(inp: tuple[Desks, int], result: Result) -> tuple[bool, tuple[Result, str]]:
     try:
-        desks, side_length = input
-        if not Counter(chain(*result)) - Counter(desks):
+        desks, side_length = inp
+        if Counter(chain(*result)) <= Counter(desks):
             difs = [side_length - sum(r) for r in result]
-            if difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+            if difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2, 0, 2]] or sorted(difs) == [0, 1, 1, 2]:
                 return True, (result, 'success')
         return False, (result, 'fail')
     except Exception:
         return False, (result, 'fail')
+
 
 api.add_listener(
     ON_CONNECT,

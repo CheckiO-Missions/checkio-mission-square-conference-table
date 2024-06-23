@@ -14,18 +14,21 @@ def square_conference_table(desks: Desks, side_length: int) -> SquareTable:
 
 {% block example %}
 print('Example:')
-print(square_conference_table([2, 2, 3, 4, 5], 5))
+print(square_conference_table((2, 2, 3, 4, 5), 5))
 {% endblock %}
 
 # These "asserts" are used for self-checking
 from itertools import chain
 from collections import Counter
-def checker(fn, ds, s):
+from typing import Callable
+
+
+def checker(fn: Callable, ds: tuple[int, ...], s: int) -> bool:
     result = fn(ds, s)
-    edge_types = ([1,1,1,1], [2,0,2,0], [0,2,0,2], [0,1,1,2])
     if Counter(chain(*result)) <= Counter(ds):
         difs = [s - sum(r) for r in result]
-        return difs in edge_types[:3] or sorted(difs) == edge_types[3]
+        return difs in ([1, 1, 1, 1], [2, 0, 2, 0], [0, 2, 0, 2]) or sorted(difs) == [0, 1, 1, 2]
+    return False
 
 
 {% block tests %}
