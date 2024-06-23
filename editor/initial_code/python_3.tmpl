@@ -23,7 +23,7 @@ from collections import Counter
 def checker(fn, ds, s):
     result = fn(ds, s)
     edge_types = ([1,1,1,1], [2,0,2,0], [0,2,0,2], [0,1,1,2])
-    if not Counter(chain(*result)) - Counter(ds):
+    if Counter(chain(*result)) <= Counter(ds):
         difs = [s - sum(r) for r in result]
         return difs in edge_types[:3] or sorted(difs) == edge_types[3]
 
