@@ -69,11 +69,15 @@
 <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">
 from itertools import chain
 from collections import Counter
-def checker(fn, ds, s):
+from typing import Callable
+
+
+def checker(fn: Callable, ds: tuple[int, ...], s: int) -> bool:
     result = fn(ds, s)
-    if not Counter(chain(*result)) - Counter(ds):
+    if Counter(chain(*result)) <= Counter(ds):
         difs = [s - sum(r) for r in result]
-        return difs in [[1, 1, 1, 1], [2, 0, 2, 0], [0, 2 ,0, 2]] or sorted(difs) == [0, 1, 1, 2]:
+        return difs in ([1, 1, 1, 1], [2, 0, 2, 0], [0, 2, 0, 2]) or sorted(difs) == [0, 1, 1, 2]
+    return False
 
 
 {{init_code_tmpl}}</pre>
